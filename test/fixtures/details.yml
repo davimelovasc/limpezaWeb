@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_has_spot: one
+  photo: MyString
+  obs: MyText
+
+two:
+  task_has_spot: two
+  photo: MyString
+  obs: MyText
