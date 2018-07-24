@@ -4,18 +4,23 @@ class Api::V1::SpotsController < ApplicationController
   # GET /spots
   def index
     @spots = Spot.all
-    render :json => @spots
+    render json: @spots
   end
 
   # POST /spots
   def create
-    @spot = Spot.create!(spot_params)
-    json_response(@spot, :created)
+    @spot = Spot.new(spot_params)
+    # @spot.user == current_user
+    if @spot.save
+      render json: @spot, status: :created
+    else
+      render json: @spot.errors, status: :unprocessable_entity
+    end
   end
 
   # GET /spots/:id
   def show
-    json_response(@spot)
+    render json: @spot
   end
 
   # PUT /spots/:id
@@ -34,10 +39,26 @@ class Api::V1::SpotsController < ApplicationController
 
   def spot_params
     # whitelist params
-    params.permit(:name)
+    params.require(:spot).permit(:name, :clean_type, :governance, :lat, :long, :status, :user_id)
   end
 
   def set_spot
     @spot = Spot.find(params[:id])
   end
+  
 end
+
+
+# http://localhost:3000/api/v1/spots
+# {
+# 	"spot": {
+# 		"name": "Armazem",
+# 		"clean_type": 1,
+# 		"governance": "governo ce",
+# 		"lat": "1234",
+# 		"long": "1234",
+# 		"status": 2,
+# 		"user_id": 1
+		
+# 	}
+# }

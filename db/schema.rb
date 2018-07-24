@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 20180719025035) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.boolean "allow_password_change", default: false
-    t.string "name"
-    t.string "registration"
-    t.string "email"
-    t.string "role"
+    t.string "name", null: false
+    t.integer "registration", null: false
+    t.string "email", null: false
+    t.string "role", null: false
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
