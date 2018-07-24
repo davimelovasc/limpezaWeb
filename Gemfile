@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 gem 'devise_token_auth'
+gem 'acts_as_paranoid', '~> 0.6.0'
 
 #gem "active_model_serializers", "~> 0.8.0"
 

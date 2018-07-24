@@ -1,4 +1,5 @@
-class Api::V1::TasksController < ApplicationController
+class Api::V1::TasksController < Api::V1::ApiController
+  # before_action :authenticate_user!
   before_action :set_task, only: [:show, :update, :destroy]
 
   # GET /tasks
@@ -8,33 +9,42 @@ class Api::V1::TasksController < ApplicationController
   end
 
   # POST /tasks
-  def create
-    @task = Task.create!(task_params)
-    json_response(@task, :created)
-  end
+  # def create
+  #   @task = Task.new(task_params)
+  #   if @task.save
+  #     render json: @task, status: :created
+  #   else
+  #     render json: @task.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # GET /tasks/:id
+  # GET /tasks/:id        before_action set_spot
   def show
-    json_response(@task)
+    render json: @task
   end
 
-  # PUT /tasks/:id
+  # PUT /tasks/:id        before_action set_spot
   def update
-    @task.update(task_params)
-    head :no_content
+    if @task.update(task_params)
+      render json: @task, status: :ok
+    else
+      render json: { error: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
-  # DELETE /tasks/:id
+  # DELETE /tasks/:id     before_action set_spot
   def destroy
-    @task.destroy
-    head :no_content
+    if @task.destroy
+      render json: {}, status: :ok
+    else
+      render json: { erro: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def task_params
-    # whitelist params
-    params.permit(:name)
+    params.require(:task).permit(:name, :description, :period)
   end
 
   def set_task

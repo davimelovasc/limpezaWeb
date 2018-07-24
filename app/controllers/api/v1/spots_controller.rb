@@ -1,4 +1,5 @@
-class Api::V1::SpotsController < ApplicationController
+class Api::V1::SpotsController < Api::V1::ApiController
+  # before_action :authenticate_user!
   before_action :set_spot, only: [:show, :update, :destroy]
 
   # GET /spots
@@ -7,58 +8,40 @@ class Api::V1::SpotsController < ApplicationController
     render json: @spots
   end
 
-  # POST /spots
-  def create
-    @spot = Spot.new(spot_params)
-    # @spot.user == current_user
-    if @spot.save
-      render json: @spot, status: :created
-    else
-      render json: @spot.errors, status: :unprocessable_entity
-    end
-  end
 
-  # GET /spots/:id
+
+  # GET /spots/:id        before_action set_spot
   def show
     render json: @spot
   end
 
-  # PUT /spots/:id
+  # PUT /spots/:id        before_action set_spot
+  #
   def update
-    @spot.update(spot_params)
-    head :no_content
+    if @spot.update(task_params)
+      render json: @spot, status: :ok
+    else
+      render json: { error: @spot.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
-  # DELETE /spots/:id
+  # DELETE /spots/:id     before_action set_spot
   def destroy
-    @spot.destroy
-    head :no_content
+    if @spot.destroy
+      render json: {}, status: :ok
+    else
+      render json: { erro: @spot.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def spot_params
-    # whitelist params
     params.require(:spot).permit(:name, :clean_type, :governance, :lat, :long, :status, :user_id)
   end
 
   def set_spot
     @spot = Spot.find(params[:id])
   end
-  
+
 end
-
-
-# http://localhost:3000/api/v1/spots
-# {
-# 	"spot": {
-# 		"name": "Armazem",
-# 		"clean_type": 1,
-# 		"governance": "governo ce",
-# 		"lat": "1234",
-# 		"long": "1234",
-# 		"status": 2,
-# 		"user_id": 1
-		
-# 	}
-# }
