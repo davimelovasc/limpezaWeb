@@ -1,23 +1,30 @@
 class SpotsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:update]
+
+  # GET
+  def new
+    @spot = Spot.new
+  end
 
   # POST
   def create
     @spot = Spot.new(spot_params)
     # break if @spot.user != current_user
     if @spot.save
-
+      redirect_to #
     else
-
+      render 'new'
     end
   end
 
-  # PUT        before_action set_spot
+  # PUT 
+  # before_action set_spot
   def update
     if @task.update(task_params)
-
+      redirect_to #
     else
-
+      render
     end
   end
 

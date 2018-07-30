@@ -1,5 +1,5 @@
 class Api::V1::TasksController < Api::V1::ApiController
-  # before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_task, only: [:show, :update, :destroy]
 
   # GET /tasks
@@ -9,14 +9,14 @@ class Api::V1::TasksController < Api::V1::ApiController
   end
 
   # POST /tasks
-  # def create
-  #   @task = Task.new(task_params)
-  #   if @task.save
-  #     render json: @task, status: :created
-  #   else
-  #     render json: @task.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def create
+    @task = Task.new(task_params)
+    if @task.save
+      render json: @task, status: :created
+    else
+      render json: @task.errors, status: :unprocessable_entity
+    end
+  end
 
   # GET /tasks/:id        before_action set_spot
   def show

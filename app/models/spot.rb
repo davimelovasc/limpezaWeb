@@ -3,4 +3,6 @@ class Spot < ApplicationRecord
   belongs_to :user, optional: true
   has_many :task_has_spot
   has_many :tasks, through: :task_has_spot
+
+  enum status: { to_do: 0, pendent: 1, completed: 2, need_review: 3  }
 end
