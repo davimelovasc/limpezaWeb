@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180724135831) do
   create_table "details", force: :cascade do |t|
     t.integer "task_has_spot_id"
     t.string "photo"
-    t.text "obs"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_has_spot_id"], name: "index_details_on_task_has_spot_id"
