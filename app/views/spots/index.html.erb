@@ -1,0 +1,12 @@
+<% @spots.each do |s| %>
+  <%= "id: #{s.id}" %>
+  <%= "name: #{s.name}" %>
+  <%= "clean_type: #{s.clean_type}" %>
+  <%= "governancia: #{s.governance}" %>
+  <%= "latitude: #{s.lat}" %>
+  <%= "longitude: #{s.long}" %>
+  <%= "status: #{s.status}" %>
+  <br/>
+<% end %>
+
+<%= link_to "Novo lugar", new_spot_path, class: "btn btn-primary mt-5 mx-2" %>

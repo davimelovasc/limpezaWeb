@@ -1,7 +1,10 @@
 class SpotsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
   before_action :set_task, only: [:update]
 
+  def index
+    @spots = Spot.all
+  end
   # GET
   def new
     @spot = Spot.new
@@ -18,7 +21,7 @@ class SpotsController < ApplicationController
     end
   end
 
-  # PUT 
+  # PUT
   # before_action set_spot
   def update
     if @task.update(task_params)

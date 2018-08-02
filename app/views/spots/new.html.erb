@@ -1,0 +1,11 @@
+<%= form_for @spot, url: spots_path, method: :post do |f| %>
+  <br/>
+  <%= f.label :name, "Nome: " %><br />
+  <%= f.text_field :name %>
+  <br/>
+  <%= f.label :clean_type, "Tipo de limpeza: " %><br />
+  <%= select_tag(:clean_type, options_for_select([ ['Leve', 1], ['Pesado', 2], ['Muito pesado', 3] ]) ) %>
+  <br/>
+
+
+<% end %>

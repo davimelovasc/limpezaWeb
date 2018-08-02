@@ -37,8 +37,9 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'acts_as_paranoid', '~> 0.6.0'
 gem 'active_model_serializers', '0.10.0'
-
-#gem "active_model_serializers", "~> 0.8.0"
+gem 'jquery-rails'
+gem 'jquery-datatables-rails'
+gem 'bootstrap', '~> 4.1.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
