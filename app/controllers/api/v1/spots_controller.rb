@@ -1,5 +1,5 @@
 class Api::V1::SpotsController < Api::V1::ApiController
-  #before_action :authenticate_api_v1_user
+  before_action :authenticate_api_v1_user
   before_action :set_spot, only: [:show, :update, :destroy]
 
   # GET /spots
