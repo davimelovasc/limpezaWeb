@@ -5,6 +5,7 @@ class SpotsController < ApplicationController
   def index
     @spots = Spot.all
   end
+
   # GET
   def new
     @spot = Spot.new

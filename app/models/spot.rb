@@ -4,5 +4,32 @@ class Spot < ApplicationRecord
   has_many :task_has_spots
   has_many :tasks, through: :task_has_spots
 
-  enum status: { to_do: 0, pendent: 1, completed: 2, need_review: 3  }
+  #  enum status: { to_do: 0, pendent: 1, completed: 2, need_review: 3  }
+
+  def as_json(options = {})
+    super(
+      include: {
+        tasks: {
+          except: [:created_at, :updated_at, :deleted_at],
+          methods: [:details, :observations],
+          root: true
+        }
+      },
+      except: [:created_at, :updated_at, :deleted_at]
+    )
+  end
+
+
+  def is_pendent #Completou todas as tarefas. Esperando avaliação
+    self.tasks do |task|
+      ts = TaskHasSpot.where(task: task, spot: self).first
+      if ts.details.count > ts.observations.count
+      elsif ts.details.count <= ts.observations.count
+        return false; #nao fez ou need_review
+      end
+
+    end
+    return true;
+  end
+
 end
