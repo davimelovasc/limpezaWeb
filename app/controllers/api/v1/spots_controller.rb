@@ -1,15 +1,14 @@
 class Api::V1::SpotsController < Api::V1::ApiController
-  #before_action :authenticate_api_v1_user!
+  before_action :authenticate_api_v1_user!
   before_action :set_spot, only: [:show, :update, :destroy]
 
   # GET /spots
   def index
-    #@spots = SpotService.getSpots(current_api_v1_user.id)
-    @spots = Spot.all
+    @spots = SpotService.getSpots(current_api_v1_user.id)
     render json: @spots
   end
 
-  # PUT /spots/:id { "status": 0 }      # REVER
+  # PUT /spots { "id": 1, "status": 0 }
   def update
     if @spot.update(spot_params)
       render json: @spot, status: :ok
@@ -28,8 +27,10 @@ class Api::V1::SpotsController < Api::V1::ApiController
         complete_params.each do |p|
           task = Task.find(p[:task_id])
           ts = TaskHasSpot.where(spot: spot, task: task).first
-          d = Detail.new(task_has_spot ts, photo: p[:photo], description: p[:description])
+          d = Detail.new(task_has_spot: ts, photo: p[:photo], description: p[:description])
+          ts.status = 1  # pendent
           d.save
+          ts.save
         end
 
         if spot.is_pendent
@@ -42,7 +43,9 @@ class Api::V1::SpotsController < Api::V1::ApiController
           task = Task.find(p[:task_id])
           ts = TaskHasSpot.where(spot: spot, task: task).first
           o = Observation.new(task_has_spot: ts, description: p[:description], photo: p[:photo])
+          ts.status = 3
           o.save
+          ts.save
         end
 
         spot.status = 3

@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180803144703) do
   create_table "task_has_spots", force: :cascade do |t|
     t.integer "spot_id"
     t.integer "task_id"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_task_has_spots_on_spot_id"

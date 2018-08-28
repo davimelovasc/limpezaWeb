@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth'
 
       get "/spots", to: "spots#index"
-      put "/spots/:id", to: "spots#update"
+      put "/spots", to: "spots#update"
       post "/spots", to: "spots#complete_spot"
     end
   end

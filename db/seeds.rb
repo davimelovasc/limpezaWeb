@@ -21,8 +21,8 @@ s2.tasks << [t1]
 s3.tasks << [t1, t2, t3, t4]
 
 # Detail
-Detail.create(task_has_spot_id: 1, description: "obs1")
-Detail.create(task_has_spot_id: 1, description: "obs2")
-Detail.create(task_has_spot_id: 2, description: "obs3")
+# Detail.create(task_has_spot_id: 1, description: "obs1")
+# Detail.create(task_has_spot_id: 1, description: "obs2")
+# Detail.create(task_has_spot_id: 2, description: "obs3")
 
 # s.task_has_spot[0].details.last
