@@ -88,6 +88,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    izitoast (1.2.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -216,6 +217,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise_token_auth
+  izitoast
   jbuilder (~> 2.5)
   jquery-datatables-rails
   jquery-rails

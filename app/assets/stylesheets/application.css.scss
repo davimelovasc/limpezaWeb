@@ -18,18 +18,39 @@
 
  @import "bootstrap";
  @import "css/sb-admin";
+ @import "iziToast";
+
+ $bg-color: #eee;
+ $primary-color: #64a9a6;
+ $primary-color-dark: #55908c;
 
 html, 
 body {
     height: 100%;
+    background-color: $bg-color !important;
+}
+
+input:focus {
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+}
+
+.btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
+
+.btn-primary:hover, .btn-primary:active {
+    background-color: $primary-color-dark !important;
+    border-color: $primary-color-dark !important;
 }
 
 .sidebar {
-    background-color: #64a9a4;
+    background-color: $primary-color;
 }
 
 li.active {
-    background-color: #55908c;
+    background-color: $primary-color-dark;
 }
 
 table.pull-up {

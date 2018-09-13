@@ -36,6 +36,7 @@ gem 'acts_as_paranoid', '~> 0.6.0'
 gem 'jquery-rails'
 gem 'jquery-datatables-rails'
 gem 'bootstrap', '~> 4.1.3'
+gem 'izitoast'
 
 group :production do
   gem 'pg'

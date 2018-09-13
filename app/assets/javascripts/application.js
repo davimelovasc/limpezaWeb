@@ -17,4 +17,14 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive
 //= require js/sb-admin
+//= require iziToast
 //= require_tree .
+
+iziToast.settings({
+    position: 'topCenter',
+    timeout: 2500,
+    pauseOnHover: false,
+    progressBar: false,
+    displayMode: 2,
+    messageSize: "15"
+});

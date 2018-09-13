@@ -30,8 +30,9 @@
         <span>Administradores</span></a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="tables.html">
+    <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do  %>
         <i class="fas fa-sign-out-alt"></i>&nbsp;
-        <span>Sair</span></a>
+        <span>Sair</span>
+    <% end %>
     </li>
 </ul>
