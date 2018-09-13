@@ -1,12 +1,42 @@
-<% @spots.each do |s| %>
-  <%= "id: #{s.id}" %>
-  <%= "name: #{s.name}" %>
-  <%= "clean_type: #{s.clean_type}" %>
-  <%= "governancia: #{s.governance}" %>
-  <%= "latitude: #{s.lat}" %>
-  <%= "longitude: #{s.long}" %>
-  <%= "status: #{s.status}" %>
-  <br/>
+<div class="mt-5">
+<%= link_to new_spot_path, class: "ml-2 tableBt" do %>
+  <i class="fa fa-plus"></i> Novo Lugar
 <% end %>
+<table class="pull-up display responsive no-wrap" id="spots_table">
+  <thead>
+    <tr>
+      <th class="nosort"></th>
+      <th>Nome</th>
+      <th>Status</th>
+      <th class="nosort">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @spots.each do |s| %>
+    <tr>
+      <td></td>
+      <td><%= s.name %></td>
+      <td><%= s.status %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
-<%= link_to "Novo lugar", new_spot_path, class: "btn btn-primary mt-5 mx-2" %>
+
+
+
+<script>
+$('#spots_table').DataTable({
+  "responsive": true,
+  "bInfo": false,
+  "bLengthChange": false,
+  'aoColumnDefs': [{
+    'bSortable': false,
+    'aTargets': ['nosort']
+  }],
+  "order": [[ 1, "asc" ]]
+});
+
+</script>

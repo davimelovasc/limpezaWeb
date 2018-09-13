@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+class TasksController < WebController
   before_action :authenticate_admin!
 
   def index

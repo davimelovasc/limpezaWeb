@@ -1,4 +1,4 @@
-class SpotsController < ApplicationController
+class SpotsController < WebController
   before_action :authenticate_admin!
   before_action :set_task, only: [:update]
 

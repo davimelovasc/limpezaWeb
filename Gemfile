@@ -19,8 +19,6 @@ gem 'rack-cors', require: 'rack/cors'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -38,6 +36,7 @@ gem 'acts_as_paranoid', '~> 0.6.0'
 gem 'jquery-rails'
 gem 'jquery-datatables-rails'
 gem 'bootstrap', '~> 4.1.3'
+gem "font-awesome-rails"
 
 group :production do
   gem 'pg'

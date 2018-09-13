@@ -15,4 +15,6 @@
 //= require bootstrap
 //= require rails-ujs
 //= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.responsive
+//= require js/sb-admin
 //= require_tree .
