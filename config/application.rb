@@ -16,7 +16,7 @@ module LimpezaWeb
 
     config.i18n.default_locale = 'pt-BR'
 
-    #config.middleware.insert_before Warden::Manager, Rack::Cors
+    config.middleware.insert_before Warden::Manager, Rack::Cors
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
