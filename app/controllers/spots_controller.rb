@@ -8,6 +8,8 @@ class SpotsController < WebController
 
   # GET
   def new
+    @caretakers = User.where(role: "carataker")
+    @tasks = Task.all
     @spot = Spot.new
   end
 
@@ -36,7 +38,7 @@ class SpotsController < WebController
 
   private
   def spot_params
-    params.require(:spot).permit(:name, :clean_type, :governance, :lat, :long, :status, :user_id)
+    params.require(:spot).permit(:name, :light_cleaning, :tasks, :heavy_cleaning, :governance, :lat, :long, :status, :user_id)
   end
 
   def set_task

@@ -18,6 +18,7 @@
 
  @import "bootstrap";
  @import "css/sb-admin";
+ @import "css/bootstrap-select";
  @import "iziToast";
 
  $bg-color: #eee;
@@ -40,7 +41,7 @@ input:focus {
     border-color: $primary-color;
 }
 
-.btn-primary:hover, .btn-primary:active {
+.btn-primary:hover, .btn-primary:active, .btn:focus:not(.dropdown-toggle) {
     background-color: $primary-color-dark !important;
     border-color: $primary-color-dark !important;
 }
@@ -76,8 +77,11 @@ div.dataTables_paginate {
     position: absolute;
 }
 
-// .main {
-//     width: 70vw; 
-//     margin-left: auto; 
-//     margin-right: auto;
-// }
+.autocomplete-suggestions {
+    background-color: #fff;
+}
+
+button.dropdown-toggle:focus {
+    background-color: #dae0e5;
+    border-color: #d3d9df;
+}

@@ -17,7 +17,9 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive
 //= require js/sb-admin
+//= require js/jquery.autocomplete.min
 //= require iziToast
+//= require js/bootstrap-select
 //= require_tree .
 
 iziToast.settings({
