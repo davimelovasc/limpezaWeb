@@ -25,10 +25,17 @@
  $primary-color: #64a9a6;
  $primary-color-dark: #55908c;
 
-html, 
+html,
 body {
     height: 100%;
     background-color: $bg-color !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 input:focus {
@@ -48,6 +55,28 @@ input:focus {
 
 .sidebar {
     background-color: $primary-color;
+}
+
+.logo-menu {
+  max-width: 225px;
+  width: auto;
+  height: auto;
+}
+
+.logo-login {
+  max-width: 500px;
+  width: 100%;
+}
+
+// SM ou menor
+@media only screen and (max-width: 767px) {
+  .tableBt {
+    position: relative !important;
+    margin-bottom: 20px;
+  }
+  .dataTables_filter {
+    margin-bottom: 20px;
+  }
 }
 
 li.active {
@@ -72,16 +101,70 @@ div.dataTables_paginate {
     }
 }
 
+a.paginate_button {
+    // override font-color here.
+}
+a.paginate_button:hover {
+    // override hover font-color here.
+}
+a.paginate_button.current {
+    // override current page button styling here.
+}
+
+
 .tableBt {
     z-index: 999;
     position: absolute;
 }
 
-.autocomplete-suggestions {
-    background-color: #fff;
+.modal-lg {
+    width: 80% !important;
 }
 
-button.dropdown-toggle:focus {
-    background-color: #dae0e5;
-    border-color: #d3d9df;
+.img-container{
+  position:relative;
+  display:inline-block;
+  max-width: 140px;
+  max-height: 100px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+.img-container .overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgb(170,170,170);
+  opacity:0;
+  transition:opacity 500ms ease-in-out;
+}
+.img-container:hover .overlay{
+  opacity:1;
+
+  span:hover {
+    cursor: pointer;
+    color: #fff;
+  }
+}
+.overlay span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+}
+
+ // DROPDOWN multiple
+
+.dropdown-menu {
+
+  li:hover, a:hover, .dropdown-item.active, .dropdown-item:active{
+    background-color: $primary-color-dark !important;
+    color: white !important;
+  }
+
 }

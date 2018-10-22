@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins
-  root 'spots#index'
 
-  resources :spots
+  root "spots#index"
 
-  get "/autocomplete/tasks", to: "tasks#autocomplete"
 
+  resources :spots, :tasks, :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do

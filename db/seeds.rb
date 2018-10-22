@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-s1 = Spot.create(name: "Sala 01", clean_type: 0, governance: "Governo do estado do Ceará", lat: "1524", long: "123", status: 0)
-s2 = Spot.create(name: "Sala 02", clean_type: 0, governance: "Governo do estado do Ceará", lat: "1524", long: "123", status: 0)
-s3 = Spot.create(name: "Salão de jogos", clean_type: 0, governance: "Governo do estado do Ceará", lat: "1524", long: "123", status: 0)
+s1 = Spot.create(name: "Sala 01", governance: "Governo do estado do Ceará", lat: "1524", long: "123", status: 0)
+s2 = Spot.create(name: "Sala 02", governance: "Governo do estado do Ceará", lat: "1524", long: "123", status: 0)
+s3 = Spot.create(name: "Salão de jogos", governance: "Governo do estado do Ceará", lat: "1524", long: "123", status: 0)
 
 t1 = Task.create(name: "Varrer o chão", description: "Varrer o chão com vassoura")
 t2 = Task.create(name: "Passar pano no chão", description: "Lavar e passar um pano úmido em todo o chão")

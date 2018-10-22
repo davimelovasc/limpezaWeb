@@ -30,3 +30,9 @@ iziToast.settings({
     displayMode: 2,
     messageSize: "15"
 });
+
+$(document).ready(function() {
+  $('input[required]').on('invalid', function() {
+      this.setCustomValidity("Favor preencher este campo corretamente");
+  });
+});

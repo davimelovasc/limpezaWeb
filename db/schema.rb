@@ -44,7 +44,9 @@ ActiveRecord::Schema.define(version: 20180803144703) do
 
   create_table "spots", force: :cascade do |t|
     t.string "name"
-    t.integer "clean_type"
+    t.string "photo"
+    t.string "light_cleaning"
+    t.string "heavy_cleaning"
     t.string "governance"
     t.string "lat"
     t.string "long"
@@ -70,7 +72,6 @@ ActiveRecord::Schema.define(version: 20180803144703) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "period"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

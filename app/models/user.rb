@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :spots, dependent: :nullify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable
@@ -18,6 +20,14 @@ class User < ActiveRecord::Base
 
   def spots
     SpotService.getSpots(self.id)
+  end
+
+  def role_br
+    if self.role == "caretaker"
+      "Zelador"
+    elsif self.role == "supervisor"
+      "Supervisor"
+    end
   end
 
 

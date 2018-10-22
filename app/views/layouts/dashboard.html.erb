@@ -6,12 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    
-
-
   </head>
 
   <body class="page-top">
@@ -25,3 +21,19 @@
     </div>
   </body>
 </html>
+
+<script>
+  var notice = "<%= flash[:notice] %>";
+  var alert = "<%= flash[:alert] %>";
+
+  console.log(notice);
+  console.log(alert);
+
+  if(notice != '' && notice != undefined) {
+    iziToast.success({message: notice});
+  }
+
+  if(alert != '' && alert != undefined) {
+    iziToast.error({message: notice});
+  }
+</script>

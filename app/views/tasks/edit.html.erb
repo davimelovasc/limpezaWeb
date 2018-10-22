@@ -1,0 +1,7 @@
+<%= render 'form' %>
+
+<script>
+var spots = '<%= @task.spots.ids %>';
+spots = JSON.parse(spots);
+$("#input_spots").selectpicker('val', spots);
+</script>

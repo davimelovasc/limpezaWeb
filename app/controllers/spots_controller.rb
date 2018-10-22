@@ -1,6 +1,7 @@
 class SpotsController < WebController
   before_action :authenticate_admin!
-  before_action :set_task, only: [:update]
+  before_action :set_spot, only: [:show, :edit, :update, :destroy]
+  before_action :set_tasks, only: [:new, :edit]
 
   def index
     @spots = Spot.all
@@ -9,28 +10,39 @@ class SpotsController < WebController
   # GET
   def new
     @caretakers = User.where(role: "carataker")
-    @tasks = Task.all
     @spot = Spot.new
   end
 
   # POST
   def create
     @spot = Spot.new(spot_params)
-    # break if @spot.user != current_user
     if @spot.save
-      redirect_to #
+      redirect_to spots_path, notice: "Local criado com sucesso!"
     else
       render 'new'
     end
   end
 
+  def edit
+    @caretakers = User.where(role: "carataker")
+  end
+
+
   # PUT
-  # before_action set_spot
   def update
-    if @task.update(task_params)
-      redirect_to #
+    if @spot.update(spot_params)
+      redirect_to spots_path
     else
-      render
+      render 'edit'
+    end
+  end
+
+
+  def destroy
+    if @spot.destroy
+      redirect_to spots_path, notice: "Lugar excluído com sucesso."
+    else
+      redirect_to spots_path, alert: "Não foi possível excluir o local."
     end
   end
 
@@ -38,11 +50,15 @@ class SpotsController < WebController
 
   private
   def spot_params
-    params.require(:spot).permit(:name, :light_cleaning, :tasks, :heavy_cleaning, :governance, :lat, :long, :status, :user_id)
+    params.require(:spot).permit(:name, { light_cleaning: [] }, { task_ids: [] }, { heavy_cleaning: [] }, :governance, :lat, :long, :status, :user_id, :photo)
   end
 
-  def set_task
-    @task = Task.find(params[:id])
+  def set_spot
+    @spot = Spot.find(params[:id])
+  end
+
+  def set_tasks
+    @tasks = Task.all
   end
 
 end

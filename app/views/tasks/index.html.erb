@@ -1,0 +1,105 @@
+<div class="mt-5">
+<%= link_to new_task_path, class: "ml-2 tableBt" do %>
+  <i class="fa fa-plus"></i> Nova Tarefa
+<% end %>
+<table class="pull-up display responsive no-wrap" id="tasks_table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Qntd. locais</th>
+      <th class="nosort"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |s| %>
+    <tr>
+      <td><%= s.name %></td>
+      <td><%= s.description %></td>
+      <td><%= s.spots.count %></td>
+      <td>
+        <%= link_to "#" do %><i class="far fa-eye" data-toggle="modal" data-target="#modal<%=s.id%>"></i><% end %>
+        <%= link_to edit_task_path(s) do %><i class="ml-0 ml-md-1 ml-lg-3 fas fa-edit"></i><% end %>
+        <% if s.spots.count < 1 %>
+          <%= link_to task_path(s), method: :delete, 'data-confirm': "Você tem certeza que deseja excluir essa tarefa?", 'data-method': "delete" do %><i class="ml-3 far fa-trash-alt"></i><% end %>
+        <% end %>
+      </td>
+    </tr>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modal<%=s.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%= s.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-12">
+              Descrição: <%= s.description %>
+            </div>
+
+          </div>
+          <div class="row mt-2">
+
+            <div class="col-12">
+              Locais: <div>
+              <% s.spots.each do |spot| %>
+
+              <div class="img-container m-2">
+                <img src="https://placehold.it/140x100">
+                <div class="overlay">
+                  <span><%= link_to spot.name, edit_spot_path(spot) %></span>
+                </div>
+              </div>
+
+              <%end%>
+            </div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Editar", edit_task_path(s), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+</tbody>
+</table>
+</div>
+
+
+
+
+<script>
+$('#tasks_table').DataTable({
+  "responsive": true,
+  "bInfo": false,
+  "bLengthChange": false,
+  'aoColumnDefs': [{
+    'bSortable': false,
+    'aTargets': ['nosort']
+  }],
+  "order": [[ 1, "asc" ]],
+  "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+        }
+});
+
+</script>

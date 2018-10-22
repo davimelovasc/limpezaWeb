@@ -1,0 +1,59 @@
+<%= form_for @user do |f| %>
+
+  <div class="form-row">
+
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+      <%= f.label :name, "Nome: " %>
+      <%= f.text_field :name, placeholder: "Nome do usuário", class: "form-control", required: "required" %>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+      <%= f.label :role, "Tipo: " %>
+      <%= f.select :role, [["Zelador", "caretaker"], ["Supervisor", "supervisor"]], {include_blank: "Selecione"}, class: "form-control", required: "required" %>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+      <%= f.label :registration, "Matrícula: " %>
+      <%= f.text_field :registration, placeholder: "Matrícula", class: "form-control", required: "required" %>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+    <%= f.label :spots, "Responsável por: " %>
+
+      <select class="selectpicker form-control" multiple data-live-search="true" required="required" name="spot_ids[]" id="input_spots">
+        <% @spots.each do |s| %>
+          <option value=<%= s.id %>><%= s.name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-11 offset-md-1 col-lg-9">
+      <%= f.label :email, "Email: " %>
+      <%= f.email_field :email, placeholder: "Email", class: "form-control", required: "required" %>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+      <%= f.label :password, "Senha: " %>
+      <%= f.password_field :password, placeholder: "Senha", class: "form-control", required: "required" %>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+      <%= f.label :password_confirmation, "Confirmar senha: " %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", class: "form-control", required: "required" %>
+    </div>
+
+
+
+
+
+</div>
+<div class="form-row mt-3">
+  <div class="col-12 col-md-11 offset-md-1 col-lg-9">
+    <%= link_to "Cancelar", users_path, class: "px-4 btn btn-primary"%>
+
+    <%= f.submit "Salvar", class: "px-4 btn btn-primary float-right"%>
+  </div>
+</div>
+
+
+<% end %>

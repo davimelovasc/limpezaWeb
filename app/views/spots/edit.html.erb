@@ -1,0 +1,19 @@
+<%= render 'form' %>
+
+<script>
+  var tasks = '<%= @spot.tasks.ids %>';
+  tasks = JSON.parse(tasks);
+  $("#tasks").selectpicker('val', tasks);
+
+
+  var light_cleaning = '<%= @spot.light_cleaning %>'
+  light_cleaning = light_cleaning.split(',');
+  $("#light_cleaning").selectpicker('val', light_cleaning);
+
+
+  var heavy_cleaning = '<%= @spot.heavy_cleaning %>'
+  heavy_cleaning = heavy_cleaning.split(',');
+  $("#heavy_cleaning").selectpicker('val', heavy_cleaning);
+
+
+</script>
