@@ -4,6 +4,8 @@ class Spot < ApplicationRecord
   has_many :task_has_spots
   has_many :tasks, through: :task_has_spots
   accepts_nested_attributes_for :task_has_spots
+  has_attached_file :photo
+  validates_attachment_content_type :photo, content_type: ["image/jpeg", "image/png"]
 
   before_validation :edit_arrays
 

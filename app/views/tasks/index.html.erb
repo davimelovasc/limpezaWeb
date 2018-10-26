@@ -52,7 +52,11 @@
               <% s.spots.each do |spot| %>
 
               <div class="img-container m-2">
-                <img src="https://placehold.it/140x100">
+                <% if spot.photo.present? %>
+                <img src="<%= spot.photo %>">
+                <% else %>
+                <img src=""> <!-- TODO No image avaliable -->
+                <% end %>
                 <div class="overlay">
                   <span><%= link_to spot.name, edit_spot_path(spot) %></span>
                 </div>

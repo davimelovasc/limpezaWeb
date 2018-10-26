@@ -37,6 +37,7 @@ gem 'jquery-rails'
 gem 'jquery-datatables-rails'
 gem 'bootstrap', '~> 4.1.3'
 gem 'izitoast'
+gem "paperclip", "~> 6.0.0"
 
 group :production do
   gem 'pg'

@@ -15,5 +15,10 @@
   heavy_cleaning = heavy_cleaning.split(',');
   $("#heavy_cleaning").selectpicker('val', heavy_cleaning);
 
+  $(document).ready(function(){
+    var filePath = $(".file").val();
+    filePath = filePath.split("\\");
+    $(this).next('.custom-file-label').html(filePath[filePath.length-1]);
+  });
 
 </script>

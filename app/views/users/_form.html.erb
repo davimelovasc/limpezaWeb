@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, class: "confirm_pass" do |f| %>
 
   <div class="form-row">
 
@@ -9,7 +9,7 @@
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :role, "Tipo: " %>
-      <%= f.select :role, [["Zelador", "caretaker"], ["Supervisor", "supervisor"]], {include_blank: "Selecione"}, class: "form-control", required: "required" %>
+      <%= f.select :role, [["Zelador", "caretaker"], ["Supervisor", "supervisor"]], {include_blank: "Selecione"}, class: "form-control", required: "required", id: "user_role" %>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
@@ -17,7 +17,7 @@
       <%= f.text_field :registration, placeholder: "Matrícula", class: "form-control", required: "required" %>
     </div>
 
-    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4 d-none" id="input_div">
     <%= f.label :spots, "Responsável por: " %>
 
       <select class="selectpicker form-control" multiple data-live-search="true" required="required" name="spot_ids[]" id="input_spots">
@@ -34,12 +34,12 @@
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :password, "Senha: " %>
-      <%= f.password_field :password, placeholder: "Senha", class: "form-control", required: "required" %>
+      <%= f.password_field :password, placeholder: "Senha", class: "form-control", required: "required", id: "password" %>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :password_confirmation, "Confirmar senha: " %>
-      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", class: "form-control", required: "required" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", class: "form-control", required: "required", id: "password_confirmation" %>
     </div>
 
 
@@ -55,5 +55,22 @@
   </div>
 </div>
 
-
 <% end %>
+
+
+<script>
+
+  $("#user_role").bind("change", function () {
+  if($(this).val() == "caretaker"){
+    $("#input_spots").attr("disabled", false)
+    $("#input_div").removeClass("d-none");
+  } else {
+    $("#input_spots").attr("disabled", true)
+    $("#input_div").addClass("d-none");
+  }
+});
+
+
+
+
+</script>

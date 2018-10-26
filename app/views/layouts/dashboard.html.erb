@@ -26,8 +26,6 @@
   var notice = "<%= flash[:notice] %>";
   var alert = "<%= flash[:alert] %>";
 
-  console.log(notice);
-  console.log(alert);
 
   if(notice != '' && notice != undefined) {
     iziToast.success({message: notice});

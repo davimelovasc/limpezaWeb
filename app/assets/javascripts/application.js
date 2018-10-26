@@ -35,4 +35,25 @@ $(document).ready(function() {
   $('input[required]').on('invalid', function() {
       this.setCustomValidity("Favor preencher este campo corretamente");
   });
+
+  $('.file').on('change',function(){
+    var filePath = $(this).val();
+    filePath = filePath.split("\\");
+    $(this).next('.custom-file-label').html(filePath[filePath.length-1]);
+  });
+
+
+  $(".confirm_pass").on('submit', function(e){
+    
+    var password = $("#password").val();
+
+    var password_confirmation = $("#password_confirmation").val();
+
+    if(password == password_confirmation)return true;
+    else {
+      alert("Atenção, as senhas não coincidem.");
+      return false;
+    }
+  });
+  
 });

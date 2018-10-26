@@ -9,7 +9,7 @@ class SpotsController < WebController
 
   # GET
   def new
-    @caretakers = User.where(role: "carataker")
+    @caretakers = User.where(role: 0)
     @spot = Spot.new
   end
 
@@ -19,19 +19,23 @@ class SpotsController < WebController
     if @spot.save
       redirect_to spots_path, notice: "Local criado com sucesso!"
     else
+      @caretakers = User.where(role: 0)
+      @spot = Spot.new
+      @tasks = Task.all
+      #todo flash
       render 'new'
     end
   end
 
   def edit
-    @caretakers = User.where(role: "carataker")
+    @caretakers = User.where(role: 0)
   end
 
 
   # PUT
   def update
     if @spot.update(spot_params)
-      redirect_to spots_path
+      redirect_to spots_path, notice: "#{@spot.name} editado com sucesso."
     else
       render 'edit'
     end

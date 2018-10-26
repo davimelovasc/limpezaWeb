@@ -1,4 +1,13 @@
-<%= form_for @spot do |f| %>
+<% if @spot.photo.present? %>
+  <div class="row mb-3">
+    <div class="col-11" style="text-align: center;">
+
+        <img src="<%= @spot.photo %>" style="width: 30%; height: auto;" >
+      
+    </div>
+  </div>
+<% end %>
+<%= form_for @spot,  html: { multipart: true, id: "spot_form" } do |f| %>
 
   <div class="form-row">
 
@@ -74,7 +83,7 @@
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :photo, "Foto do local: " %>
       <div class="custom-file">
-      <%= f.file_field :photo, class: "custom-file-input", id: "customFile" %>
+      <%= f.file_field :photo, class: "file", id: "customFile"%>
       <label class="custom-file-label" for="customFile">Selecionar Arquivo</label>
       </div>
     </div>
@@ -105,3 +114,4 @@
 
 
 <% end %>
+

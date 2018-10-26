@@ -4,13 +4,6 @@
 <script>
  $(document).ready(function() {
   $('.selectpicker').selectpicker();
-
-  $('#customFile').on('change',function(){
-    var filePath = $(this).val();
-    filePath = filePath.split("\\");
-    $(this).next('.custom-file-label').html(filePath[filePath.length-1]);
-  })
-
  });
 
 </script>

@@ -4,19 +4,23 @@
 <% end %>
 <table class="pull-up display responsive no-wrap" id="spots_table">
   <thead>
-    <tr>
+    <tr> 
       <th class="nosort"></th>
       <th>Nome</th>
       <th>Status</th>
-      <th class="nosort"></th>
+      <th>Zelador alocado</th>
+      <th class="nosort">Ações</th>
     </tr>
   </thead>
   <tbody>
     <% @spots.each do |s| %>
     <tr>
-      <td></td>
+      <td><%= image_tag(s.photo, class: "spotImg") if s.photo.present? %></td>
       <td><%= s.name %></td>
       <td><%= s.status_name %></td>
+      <td><% if s.user != nil %>Sim 
+          <% else  %> Não
+          <% end %></td>
       <td>
         <%= link_to "#" do %><i class="far fa-eye" data-toggle="modal" data-target="#modal<%=s.id%>"></i><% end %>
         <%= link_to edit_spot_path(s) do %><i class="ml-0 ml-md-1 ml-lg-3 fas fa-edit"></i><% end %>
@@ -30,6 +34,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel"><%= s.name %></h5>
+            <p> num sei </p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -37,6 +42,10 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
+
+                <div class="col-12 m-2" style="text-align:center">
+                  <%= image_tag(s.photo, class: "spotImgModal") if s.photo.present? %>
+                </div>
 
                 <div class="col-12">
                     Reponsável: <%= s.user.name unless s.user.blank? %>
@@ -114,11 +123,15 @@ $('#spots_table').DataTable({
   "responsive": true,
   "bInfo": false,
   "bLengthChange": false,
-  'aoColumnDefs': [{
+  'columnDefs': [
+      {'width': '8vw', 'targets': 0},
+      {
     'bSortable': false,
     'aTargets': ['nosort']
-  }],
-  "order": [[ 0, "asc" ]],
+  }
+    ],
+  "pageLength": 5,
+  "order": [[ 1, "asc" ]],
   "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
         }

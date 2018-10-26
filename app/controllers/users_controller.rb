@@ -40,9 +40,9 @@ class UsersController < WebController
 
   def destroy
     if @user.destroy
-      redirect_to tasks_path, notice: "Usuário excluído com sucesso"
+      redirect_to users_path, notice: "Usuário excluído com sucesso"
     else
-      redirect_to tasks_path, notice: "Não foi possível excluir esse usuário"
+      redirect_to users_path, notice: "Não foi possível excluir esse usuário"
     end
   end
 
