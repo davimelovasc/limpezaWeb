@@ -28,13 +28,26 @@ class UsersController < WebController
   end
 
   def edit
-
+    @spots = Spot.where(user: nil).or(Spot.where(user: @user))
   end
 
 
   # PUT
   def update
-
+    if params[:spot_ids]
+      params[:spot_ids].each do |spot_id|
+        s = Spot.find(spot_id)
+        s.user = @user
+        s.save
+      end
+    end
+    if @user.update(user_params)
+      redirect_to users_path, notice: "Usuário atualizado com sucesso."
+    else
+      flash[:alert] = "Ocorreram os seguintes erros: " + @user.errors
+      set_user
+      render "edit"
+    end
   end
 
 

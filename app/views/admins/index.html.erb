@@ -1,0 +1,47 @@
+<div class="mt-5">
+<%= link_to new_admin_path, class: "ml-2 tableBt float-sm-right" do %>
+  <i class="fa fa-plus"></i> Novo Administrador
+<% end %>
+<table class="pull-up display responsive no-wrap" id="admins_table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th class="nosort">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @admins.each do |s| %>
+    <% next if s == current_admin%>
+    <tr>
+      <td><%= s.name %></td>
+      <td><%= s.email %></td>
+      <td>
+        <%= link_to edit_admin_path(s) do %><i class="ml-0 ml-md-1 ml-lg-3 fas fa-edit"></i><% end %>
+        <%= link_to admin_path(s), method: :delete, 'data-confirm': "Você tem certeza que deseja excluir esse administrador?", 'data-method': "delete" do %><i class="ml-0 ml-md-1 ml-lg-3 far fa-trash-alt"></i><% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<script>
+$('#admins_table').DataTable({
+  "responsive": true,
+  "bInfo": false,
+  "bLengthChange": false,
+  'aoColumnDefs': [{
+    'bSortable': false,
+    'aTargets': ['nosort']
+  }],
+  "order": [[ 0, "asc" ]],
+  "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+        }
+});
+
+</script>

@@ -4,23 +4,23 @@
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :name, "Nome: " %>
-      <%= f.text_field :name, placeholder: "Nome do usuário", class: "form-control", required: "required" %>
+      <%= f.text_field :name, placeholder: "Nome do usuário", class: "form-control"%>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :role, "Tipo: " %>
-      <%= f.select :role, [["Zelador", "caretaker"], ["Supervisor", "supervisor"]], {include_blank: "Selecione"}, class: "form-control", required: "required", id: "user_role" %>
+      <%= f.select :role, [["Zelador", "caretaker"], ["Supervisor", "supervisor"]], {include_blank: "Selecione"}, class: "form-control", id: "user_role" %>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :registration, "Matrícula: " %>
-      <%= f.text_field :registration, placeholder: "Matrícula", class: "form-control", required: "required" %>
+      <%= f.text_field :registration, placeholder: "Matrícula", class: "form-control"%>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4 d-none" id="input_div">
     <%= f.label :spots, "Responsável por: " %>
 
-      <select class="selectpicker form-control" multiple data-live-search="true" required="required" name="spot_ids[]" id="input_spots">
+      <select class="selectpicker form-control" multiple data-live-search="true" name="spot_ids[]" id="input_spots">
         <% @spots.each do |s| %>
           <option value=<%= s.id %>><%= s.name %></option>
         <% end %>
@@ -29,17 +29,17 @@
 
     <div class="form-group col-sm-12 col-md-11 offset-md-1 col-lg-9">
       <%= f.label :email, "Email: " %>
-      <%= f.email_field :email, placeholder: "Email", class: "form-control", required: "required" %>
+      <%= f.email_field :email, placeholder: "Email", class: "form-control"%>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :password, "Senha: " %>
-      <%= f.password_field :password, placeholder: "Senha", class: "form-control", required: "required", id: "password" %>
+      <%= f.password_field :password, placeholder: "Senha", class: "form-control", id: "password" %>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :password_confirmation, "Confirmar senha: " %>
-      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", class: "form-control", required: "required", id: "password_confirmation" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", class: "form-control", id: "password_confirmation" %>
     </div>
 
 
@@ -59,16 +59,31 @@
 
 
 <script>
+$(document).ready(function() {
+  function checkSpots() {
+     if( $("#user_role").val()== "caretaker" ){
+      $("#input_spots").attr("disabled", false)
+      $("#input_div").removeClass("d-none");
 
-  $("#user_role").bind("change", function () {
-  if($(this).val() == "caretaker"){
-    $("#input_spots").attr("disabled", false)
-    $("#input_div").removeClass("d-none");
-  } else {
-    $("#input_spots").attr("disabled", true)
-    $("#input_div").addClass("d-none");
+        var spots = '<%= @user.spots.ids %>';
+        spots = JSON.parse(spots);
+        $("#input_spots").selectpicker('val', spots);
+
+
+    } else {
+      $("#input_spots").attr("disabled", true)
+      $("#input_div").addClass("d-none");
+    }
   }
+  $("#user_role").on("change", function () {
+   checkSpots();
+  });
+
+
+  checkSpots();
+
 });
+ 
 
 
 

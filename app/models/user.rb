@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   enum role: { caretaker: 0, supervisor: 1 }
 
+  validates :name, :registration, :email, :role, presence: true
+
   # def token_validation_response
   #   UserSerializer.root = false
   #   UserSerializer.new(self).as_json

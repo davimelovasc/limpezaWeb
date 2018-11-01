@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "spots#index"
 
 
-  resources :spots, :tasks, :users
+  resources :spots, :tasks, :users, :admins
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
