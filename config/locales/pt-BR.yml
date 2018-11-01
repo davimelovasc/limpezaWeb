@@ -1,5 +1,41 @@
 pt-BR:
+  attributes:
+    name: "nome"
+    description: "descrição"
+    photo: "foto"
+    password: "senha"
+    password_confirmation: "confirmação da senha"
   activerecord:
+    models:
+      admin:
+        one: "administrador"
+        other: "administradores"
+      details:
+        one: "detalhe"
+        other: "detalhes"
+      observation:
+        one: "observação"
+        other: "observações"
+      spot:
+        one: "local"
+        other: "locais"
+      task:
+        one: "tarefa"
+        other: "tarefas"
+      user:
+        one: "usuário"
+        other: "usuários"
+    attributes:
+      user:
+        role: "tipo de usuário"
+        registration: "matrícula"
+        spots: "locais"
+      spot:
+        light_cleaning: "dias de limpeza leve"
+        heavy_cleaning: "dias de limpeza pesada"
+        governance: "orgão público"
+        lat: "latitude"
+        long: "longitude"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

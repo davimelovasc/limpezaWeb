@@ -34,7 +34,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel"><%= s.name %></h5>
-            <p> num sei </p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -48,35 +47,35 @@
                 </div>
 
                 <div class="col-12">
-                    Reponsável: <%= s.user.name unless s.user.blank? %>
+                    <b>Reponsável:</b> <%= s.user.name unless s.user.blank? %>
                 </div>
               </div>
               <div class="row mt-2">
 
                 <div class="col-6">
-                  Status: <%= s.status_name %>
+                  <b>Status:</b> <%= s.status_name %>
                 </div>
 
                 <div class="col-6">
-                  Orgão: <%= s.governance %>
+                  <b>Orgão: </b><%= s.governance %>
                 </div>
 
               </div>
               <div class="row mt-2">
 
                 <div class="col-6">
-                  Limpeza leve: <%=  s.name_of_days(s.light_cleaning) unless s.light_cleaning.blank? %>
+                  <b>Limpeza leve:</b> <%=  s.name_of_days(s.light_cleaning) unless s.light_cleaning.blank? %>
                 </div>
 
                 <div class="col-6">
-                  Limpeza pesada: <%=  s.name_of_days(s.heavy_cleaning) unless s.heavy_cleaning.blank? %>
+                  <b>Limpeza pesada:</b> <%=  s.name_of_days(s.heavy_cleaning) unless s.heavy_cleaning.blank? %>
                 </div>
 
               </div>
 
               <div class="row mt-2">
                 <div class="col-12">
-                Tarefas:
+                <b>Tarefas:</b>
                   <div id="tasks">
                   <% s.tasks.each do |t| %>
                     <%= t.name %><% if t != s.tasks.last %>,<% end %>
@@ -87,9 +86,9 @@
 
               <div class="row mt-2">
                 <div class="col-6">
-                  Latitude: <%= s.lat %>
+                  <b>Latitude:</b> <%= s.lat %>
                   <div class="mt-2">
-                    Longitude: <%= s.long %>
+                  <b>Longitude:</b> <%= s.long %>
                   </div>
                 </div>
 

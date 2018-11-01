@@ -1,6 +1,6 @@
 <%= form_for @user, class: "confirm_pass" do |f| %>
 
-  <div class="form-row">
+  <div class="form-row mt-5">
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :name, "Nome: " %>
@@ -61,18 +61,20 @@
 <script>
 $(document).ready(function() {
   function checkSpots() {
-     if( $("#user_role").val()== "caretaker" ){
-      $("#input_spots").attr("disabled", false)
+     if( $("#user_role").val() == "caretaker" ) {
       $("#input_div").removeClass("d-none");
 
-        var spots = '<%= @user.spots.ids %>';
-        spots = JSON.parse(spots);
-        $("#input_spots").selectpicker('val', spots);
+        
+        var spots = '<%= @user.spots.ids unless @user.spots.blank? %>';
+        if(spots != '') {
+          spots = JSON.parse(spots);
+          $("#input_spots").selectpicker('val', spots);
+        }
 
 
     } else {
-      $("#input_spots").attr("disabled", true)
       $("#input_div").addClass("d-none");
+      $("#input_spots").selectpicker('val', '');
     }
   }
   $("#user_role").on("change", function () {

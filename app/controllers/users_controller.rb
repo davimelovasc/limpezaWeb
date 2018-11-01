@@ -15,14 +15,21 @@ class UsersController < WebController
   # POST
   def create
     @user = User.new(user_params)
-    spot_ids.each do |s|
-      spot = Spot.find(s)
-      spot.user = @user
-      spot.save
+    unless params[:spot_ids].blank?
+      params[:spot_ids].each do |s|
+        spot = Spot.find(s)
+        spot.user = @user
+        spot.save
+      end
     end
+
+  
     if @user.save
       redirect_to users_path, notice: "Usuário criado com sucesso!"
     else
+      flash[:alert] = "Os seguintes erros ocorreram: #{@user.errors.full_messages}"
+      @user = User.new
+      @spots = Spot.where(user: nil)
       render 'new'
     end
   end
@@ -40,12 +47,17 @@ class UsersController < WebController
         s.user = @user
         s.save
       end
+    else
+      @user.spots.each do |s|
+        s.user = nil
+        s.save
+      end
     end
     if @user.update(user_params)
       redirect_to users_path, notice: "Usuário atualizado com sucesso."
     else
-      flash[:alert] = "Ocorreram os seguintes erros: " + @user.errors
-      set_user
+      flash[:alert] = "Os seguintes erros ocorreram: #{@user.errors.full_messages}"
+      @spots = Spot.where(user: nil).or(Spot.where(user: @user))
       render "edit"
     end
   end

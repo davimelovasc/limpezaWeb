@@ -39,21 +39,21 @@
               <div class="row">
 
                 <div class="col-6 col-lg-3">
-                    Matrícula: <%= s.registration %>
+                    <b>Matrícula:</b> <%= s.registration %>
                 </div>
 
                 <div class="col-12 col-sm-6 col-lg-6">
-                  Email: <%= s.email %>
+                  <b>Email: </b><%= s.email %>
                 </div>
 
                 <div class="col-6 col-lg-3">
-                  Tipo: <%= s.role_br %>
+                  <b>Tipo: </b><%= s.role_br %>
                 </div>
 
               </div>
               <div class="row mt-2">
                 <div class="col-12">
-                  Responsável por: <div>
+                  <b>Responsável por: </b><div>
                   <% s.spots.each do |spot| %>
 
                     <div class="img-container m-2">

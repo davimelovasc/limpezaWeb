@@ -7,6 +7,8 @@ class Spot < ApplicationRecord
   has_attached_file :photo
   validates_attachment_content_type :photo, content_type: ["image/jpeg", "image/png"]
 
+  validates :name, :lat, :long, :status, presence: true
+
   before_validation :edit_arrays
 
   def edit_arrays
