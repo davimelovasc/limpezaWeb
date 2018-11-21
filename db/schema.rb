@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181024141016) do
+ActiveRecord::Schema.define(version: 20181120140152) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20181024141016) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_has_spot_id"], name: "index_observations_on_task_has_spot_id"
+  end
+
+  create_table "remades", force: :cascade do |t|
+    t.integer "observation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.index ["observation_id"], name: "index_remades_on_observation_id"
   end
 
   create_table "spots", force: :cascade do |t|

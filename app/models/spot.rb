@@ -82,13 +82,13 @@ class Spot < ApplicationRecord
   end
 
 
-  def is_pendent #Completou todas as tarefas. Esperando avaliação
+  def is_pendent #return true se Completou todas as tarefas. Esperando avaliação
     self.tasks do |task|
-      ts = TaskHasSpot.where(task: task, spot: self).first
+      ts = TaskHasSpot.find_by(task: task, spot: self)
 
       if ts.status == 1
       elsif ts.status != 1
-        return false; #nao fez ou need_review
+        return false; #nao fez tudo ou need_review
       end
 
     end

@@ -20,6 +20,7 @@
 //= require js/jquery.autocomplete.min
 //= require iziToast
 //= require js/bootstrap-select
+//= require Chart.min
 //= require_tree .
 
 iziToast.settings({

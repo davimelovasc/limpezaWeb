@@ -16,7 +16,13 @@
     <tr>
       <td><%= s.name %></td>
       <td><%= s.role_br %></td>
-      <td><%= s.spots.count %></td>
+      <td>
+      <% if s.caretaker? %>
+      <%= s.spots.count %>
+      <% else %>
+      -
+      <% end %>
+      </td>
       <td>
         <%= link_to "#" do %><i class="far fa-eye" data-toggle="modal" data-target="#modal<%=s.id%>"></i><% end %>
         <%= link_to edit_user_path(s) do %><i class="ml-0 ml-md-1 ml-lg-3 fas fa-edit"></i><% end %>

@@ -1,0 +1,53 @@
+<% data = {
+  labels: [I18n.t('date.month_names')[2.months.ago.month], I18n.t('date.month_names')[1.months.ago.month], I18n.t('date.month_names')[Time.now.month] ],
+  datasets: [
+    {
+        label: "Total de tarefas",
+        backgroundColor: "rgba(151,187,205,0.85)",
+        borderColor: "rgba(151,187,205,0.85)",
+        data: [500, 530, 350]
+    },
+    {
+        label: "Reclamações",
+        backgroundColor: "rgba(220,20,60,0.85)",
+        borderColor: "rgba(220,20,60,0.85)",
+        data: [@observations_2mon, @observations_1mon, @observations_current]
+    },
+    {
+        label: "Tarefas refeitas",
+        backgroundColor: "rgba(0,207,0,0.85)",
+        borderColor: "rgba(0,207,0,0.85)",
+        data: [28, 15, 22]
+    }
+  ]
+} %>
+
+<%
+    options = {
+    legend: {
+        position: "left"
+    },
+    layout: {
+        padding: {
+            left: 10,
+            right: 10,
+            top: 0,
+            bottom: 0
+        }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }],
+        xAxes: [{
+            maxBarThickness: 50
+        }]
+    }
+}
+%>
+
+<%= bar_chart   data, options %>

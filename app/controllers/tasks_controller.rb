@@ -16,9 +16,11 @@ class TasksController < WebController
   # POST
   def create
     @task = Task.new(task_params)
-    params[:spot_ids] = params[:spot_ids].map(&:to_i)
-    params[:spot_ids].each do |s|
-      @task.spots << Spot.find(s)
+    unless params[:spot_ids].blank?
+      params[:spot_ids] = params[:spot_ids].map(&:to_i)
+      params[:spot_ids].each do |s|
+        @task.spots << Spot.find(s)
+      end
     end
     if @task.save
       redirect_to tasks_path, notice: "Tarefa criada com sucesso!"
@@ -35,12 +37,17 @@ class TasksController < WebController
   # PUT
   def update
     if @task.update(task_params)
-      params[:spot_ids] = params[:spot_ids].map(&:to_i)
-      params[:spot_ids].each do |s|
-        spot = Spot.find(s)
-        @task.spots << spot unless @task.spots.exists?(spot.id)
+      @task.spots.each do |s|
+        TaskHasSpot.where(spot: s, task: @task).first.destroy
       end
-      redirect_to tasks_path, notice: "Tarefa atualizada com sucesso!"
+      unless params[:spot_ids].blank?
+        params[:spot_ids] = params[:spot_ids].map(&:to_i)
+        params[:spot_ids].each do |s|
+          spot = Spot.find(s)
+          @task.spots << spot unless @task.spots.exists?(spot.id)
+        end
+      end
+        redirect_to tasks_path, notice: "Tarefa atualizada com sucesso!"
     else
       render 'edit'
     end

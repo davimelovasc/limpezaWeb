@@ -16,11 +16,11 @@
     <span>Tarefas</span>
     <% end %>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="tables.html">
+  <li class="nav-item <%= 'active' if controller_name == 'reports' %>">
+  <%= link_to reports_path, class: "nav-link" do %>
       <i class="fas fa-chart-area"></i>&nbsp;
       <span>Relatórios</span>
-    </a>
+  <% end %>
   </li>
   <li class="nav-item <%= 'active' if controller_name == 'users' %>">
     <%= link_to users_path, class: "nav-link" do %>

@@ -6,13 +6,15 @@ Rails.application.routes.draw do
 
   resources :spots, :tasks, :users, :admins
 
+  get "/reports", to: "reports#index"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
     namespace :v1, path: "/" do
       mount_devise_token_auth_for 'User', at: 'auth'
 
       get "/spots", to: "spots#index"
-      put "/spots", to: "spots#update"
+      put "/spots/:id", to: "spots#update"
       post "/spots", to: "spots#complete_spot"
     end
   end

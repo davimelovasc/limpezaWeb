@@ -38,6 +38,7 @@ gem 'jquery-datatables-rails'
 gem 'bootstrap', '~> 4.1.3'
 gem 'izitoast'
 gem "paperclip", "~> 6.0.0"
+gem 'chartjs-ror'
 
 group :production do
   gem 'pg'

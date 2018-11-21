@@ -15,9 +15,11 @@ class AdminsController < WebController
 
   def create
     @admin = Admin.new(admin_params)
-    byebug
-    if @admin.save
-      redirect_to admins_path, notice: "Administrador criado com sucesso!"
+    if @admin.password != @admin.password_confirmation
+      flash[:alert] = "Senha e confirmação de senha não estão iguais."
+      render 'new'
+    elsif @admin.save
+        redirect_to admins_path, notice: "Administrador criado com sucesso!"
     else
       flash[:alert] = "Ocorreram os seguintes erros: #{@admin.errors}"
       render 'new'
