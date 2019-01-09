@@ -44,14 +44,65 @@ input:focus {
     outline: none;
 }
 
-.btn-primary {
+.btn.btn-primary {
     background-color: $primary-color;
     border-color: $primary-color;
+}
+
+.btn.btn-primary.focus,
+.btn.btn-primary:focus {
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  outline: none;
+  box-shadow: none;
+}
+.btn.btn-primary:hover {
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  outline: none;
+  box-shadow: none;
+}
+.btn.btn-primary.active,
+.btn.btn-primary:active {
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  outline: none;
+}
+.btn.btn-primary.active.focus,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:hover,
+.btn.btn-primary:active.focus,
+.btn.btn-primary:active:focus,
+.btn.btn-primary:active:hover {
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  outline: none;
+  box-shadow: none;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn:focus:not(.dropdown-toggle) {
     background-color: $primary-color-dark !important;
     border-color: $primary-color-dark !important;
+}
+
+.btn-outline-primary {
+    color: $primary-color-dark;
+    border-color: $primary-color-dark;
+}
+
+.btn-outline-primary:hover {
+    background-color: $primary-color-dark;
+    border-color: $primary-color-dark;
+    color: #fff;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: none !important;
+    color: #fff !important;
 }
 
 .sidebar {
@@ -65,7 +116,7 @@ input:focus {
 }
 
 .logo-login {
-  max-width: 500px;
+  max-width: 300px;
   width: 100%;
 }
 
@@ -101,17 +152,6 @@ div.dataTables_paginate {
         margin-right: auto !important;
     }
 }
-
-a.paginate_button {
-    // override font-color here.
-}
-a.paginate_button:hover {
-    // override hover font-color here.
-}
-a.paginate_button.current {
-    // override current page button styling here.
-}
-
 
 .tableBt {
     z-index: 999;
@@ -159,6 +199,25 @@ a.paginate_button.current {
   color:#fff;
 }
 
+div.menuDrop {
+    background-color: $primary-color !important;
+    border: none;
+   
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    padding: 0;
+
+    a {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+}
+
+div.dropdown-menu.show {
+    max-height: 200px;
+}
+
  // DROPDOWN multiple
 
 .dropdown-menu {
@@ -176,3 +235,60 @@ canvas{
     max-height: 480px !important;
   
   }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
+  padding: 0;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#side_perfil {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    span {
+        color: #fff;
+    }
+
+    a {
+        color: #011ebb;
+        font-size: 0.9rem;
+    }
+
+}
+
+.selectLabel {
+    width: fit-content;
+    display: inline-block;
+}
+
+select.inlineSelect {
+    margin-left: 7px;
+    display: inline-block;
+    width: 50%;
+}
+
+div.dataTables_paginate a {
+    transition: all .2s ease-in-out;
+}
+
+div.dataTables_paginate a:hover, div.dataTables_paginate a:active {
+    background: linear-gradient(to bottom, #83BAB7 0%, $primary-color-dark 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: scale(1.1) !important;
+}
+
+.img-preview {
+    max-height: 200px;
+    width: auto;
+}
+

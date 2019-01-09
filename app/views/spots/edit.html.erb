@@ -19,6 +19,25 @@
     var filePath = $(".file").val();
     filePath = filePath.split("\\");
     $(this).next('.custom-file-label').html(filePath[filePath.length-1]);
+
+
+
+    function readURL(input) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = function(e) {
+        $('#img_preview').attr('src', e.target.result);
+      }
+  
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#customFile").change(function() {
+    readURL(this);
+  });
   });
 
 </script>

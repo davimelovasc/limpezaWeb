@@ -1,5 +1,5 @@
 <div class="mt-5">
-<%= link_to new_admin_path, class: "ml-2 tableBt float-sm-right" do %>
+<%= link_to new_admin_path, class: "ml-2 tableBt float-sm-right btn btn-outline-primary" do %>
   <i class="fa fa-plus"></i> Novo Administrador
 <% end %>
 <table class="pull-up display responsive no-wrap" id="admins_table">
@@ -7,7 +7,9 @@
     <tr>
       <th>Nome</th>
       <th>Email</th>
-      <th class="nosort">Ações</th>
+      <% if current_admin.super? %>
+        <th class="nosort">Ações</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -16,10 +18,12 @@
     <tr>
       <td><%= s.name %></td>
       <td><%= s.email %></td>
+      <% if current_admin.super? %>
       <td>
-        <%= link_to edit_admin_path(s) do %><i class="ml-0 ml-md-1 ml-lg-3 fas fa-edit"></i><% end %>
+        <!-- link_to edit_admin_path(s) do <i class="ml-0 ml-md-1 ml-lg-3 fas fa-edit"></i> end -->
         <%= link_to admin_path(s), method: :delete, 'data-confirm': "Você tem certeza que deseja excluir esse administrador?", 'data-method': "delete" do %><i class="ml-0 ml-md-1 ml-lg-3 far fa-trash-alt"></i><% end %>
       </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

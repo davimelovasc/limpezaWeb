@@ -1,4 +1,29 @@
 1. trocar texto required pra pt-br
 2. ver conflito dias limpeza leve, limpeza pesada
-3. 150 x 120 imagem locais nos spots
-4. width logo prefeitura: 225 px (heitor)
+3. width logo prefeitura: 225 px (heitor)
+4. Editar perfil do adm, required na senha
+5. trocar ordem das senhas editar perfil
+
+
+Relatorios
+
+de todos os zeladores (TOTAL)  
+    - qtd de tarefas
+    - qtd de tarefas refeitas
+    - qtd de tarefas pendentes
+
+por zelador (individual) 
+    - qtd de tarefas diarias lista de tarefas por espaco 
+    - qtd de locais e lista de locais 
+    - qtd de tarefas pendentes (o somatorio de todas as tarefas que voltou)
+    - qtd de tarefas refez
+
+por espaco (TOTAL)
+    - qtd de tarefas
+    - qtd tarefas nao feitas 
+    - qtd tarefas nao feitas  
+    
+por espaco (individual)
+    - qtd de tarefas do espaco
+    - Nome do responsavel do espaco 
+    - qtd tarefas nao feitas

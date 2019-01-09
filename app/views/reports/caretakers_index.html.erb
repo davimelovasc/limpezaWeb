@@ -1,0 +1,192 @@
+<div class="mt-5">
+    <div class="row">
+    <div class="col-12 mb-3">
+        <h4 class="ml-3">Zeladores</h4>
+    </div>
+        <div class="col-lg-12 col-xl-6">
+            <h5 class="mb-4 ml-3">Relatório geral: </h5>
+            <% data = {
+            labels: [I18n.t('date.month_names')[2.months.ago.month], I18n.t('date.month_names')[1.months.ago.month], I18n.t('date.month_names')[Time.now.month] ],
+            datasets: [
+                {
+                    label: "Tarefas realizadas",
+                    backgroundColor: "rgba(151,187,205,0.85)",
+                    borderColor: "rgba(151,187,205,0.85)",
+                    data: [500, 530, 350]
+                },
+                {
+                    label: "Reclamações",
+                    backgroundColor: "rgba(220,20,60,0.85)",
+                    borderColor: "rgba(220,20,60,0.85)",
+                    data: [@observations_2mon, @observations_1mon, @observations_current]
+                },
+                {
+                    label: "Tarefas refeitas",
+                    backgroundColor: "rgba(0,207,0,0.85)",
+                    borderColor: "rgba(0,207,0,0.85)",
+                    data: [28, 15, 22]
+                }
+            ]
+            } %>
+
+            <%
+                options = {
+                legend: {
+                    position: "left"
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }],
+                    xAxes: [{
+                        maxBarThickness: 50
+                    }]
+                }
+            }
+            %>
+
+            <%= bar_chart   data, options %>
+        
+        </div>
+
+        <div class="col-lg-12 col-xl-6">
+            <h5 class="mb-4 ml-3 selectLabel">Relatório individual: </h5>
+            <select class="inlineSelect form-control" id="caretaker-input">
+                <option>Selecione</option>
+                <% @caretakers.each do |c| %>
+                    <option value="<%=c.id%>"><%= c.name %></option>
+                <% end %>
+            </select>
+        
+
+
+        <canvas id="caretakerCharter" width="400" height="400"></canvas>
+        <script>
+        var ctx = document.getElementById("caretakerCharter").getContext('2d');
+
+        var data = {
+            labels: ["<%= I18n.t('date.month_names')[2.months.ago.month] %>","<%= I18n.t('date.month_names')[1.months.ago.month] %>", "<%= I18n.t('date.month_names')[Time.now.month] %>" ],
+            datasets: [
+                {
+                    label: "Tarefas feitas",
+                    backgroundColor: "rgba(151,187,205,0.85)",
+                    data: [10, 10, 10]
+                },
+                {
+                    label: "Reclamações",
+                    backgroundColor: "rgba(220,20,60,0.85)",
+                    data: [4,3,5]
+                },
+                {
+                    label: "Tarefas refeitas",
+                    backgroundColor: "rgba(0,207,0,0.85)",
+                    data: [7,2,6]
+                }
+            ]
+        };
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                legend: {
+                    position: "left"
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }],
+                    xAxes: [{
+                        maxBarThickness: 50
+                    }]
+                }
+            }
+        });
+        </script>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+<script>
+
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+
+    function removeData(chart) {
+        chart.data.labels.pop();
+
+
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.pop();
+        });
+        chart.update();
+    } 
+
+    //remove dropdown menu for small screens
+    if( $(window).width() < 768 )
+        $("div.menuDrop").removeClass("show");
+
+    $("#caretaker-input").change(function(){
+        let id = $(this).val();
+        if(!id)return;
+        $.ajax({
+            url: "/caretaker_history",
+            type: "get", //send it through get method
+            data: { 
+                id: id
+            },
+            success: function(response) {
+                //tarefas feitas
+                myChart.data.datasets[0].data[0] = response.feitas2;
+                myChart.data.datasets[0].data[1] = response.feitas1;
+                myChart.data.datasets[0].data[2] = response.feitas_current;
+                
+
+                myChart.update();
+
+                console.log(response);
+            },
+            error: function(xhr) {
+                //Do Something to handle error
+            }
+        });
+
+    });
+
+
+
+</script>

@@ -6,7 +6,15 @@ Rails.application.routes.draw do
 
   resources :spots, :tasks, :users, :admins
 
-  get "/reports", to: "reports#index"
+  get "/spots_reports", to: "reports#spots_index"
+  get "/caretakers_reports", to: "reports#caretakers_index"
+  get "/caretaker_history", to: "reports#caretaker_history"
+  
+  
+  get "/edit_profile", to: "admins#edit_profile"
+
+  
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do

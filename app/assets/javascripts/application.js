@@ -26,8 +26,8 @@
 iziToast.settings({
     position: 'topCenter',
     timeout: 2500,
-    pauseOnHover: false,
-    progressBar: false,
+    pauseOnHover: true,
+    progressBar: true,
     displayMode: 2,
     messageSize: "15"
 });
@@ -56,5 +56,8 @@ $(document).ready(function() {
       return false;
     }
   });
-  
+
+
+
+
 });

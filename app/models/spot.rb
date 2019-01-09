@@ -4,12 +4,13 @@ class Spot < ApplicationRecord
   has_many :task_has_spots
   has_many :tasks, through: :task_has_spots
   accepts_nested_attributes_for :task_has_spots
-  has_attached_file :photo
+  has_attached_file :photo, source_file_options: { all: '-auto-orient' } #, styles: { large: "900x"}
   validates_attachment_content_type :photo, content_type: ["image/jpeg", "image/png"]
-
+  validate :check_days_repetitions
   validates :name, :lat, :long, :status, presence: true
 
   before_validation :edit_arrays
+  
 
   def edit_arrays
     unless(self.light_cleaning.blank?)
@@ -43,7 +44,6 @@ class Spot < ApplicationRecord
   end
 
   def name_of_days(days)
-    puts days
     days = days.split(",")
     days_string = ""
     days.each do |d|
@@ -93,6 +93,18 @@ class Spot < ApplicationRecord
 
     end
     return true;
+  end
+
+  def check_days_repetitions
+    heavy_cleaning = self.heavy_cleaning.split(",").map(&:to_i)
+    light_cleaning = self.light_cleaning.split(",").map(&:to_i)
+    heavy_cleaning.each do |heavy_day|
+      if light_cleaning.include?(heavy_day)
+        errors.add(:base, "Dias de limpeza leve e pesada não podem se repetir.")
+        return
+      end
+    end
+    
   end
 
 end

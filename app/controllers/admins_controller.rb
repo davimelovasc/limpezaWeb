@@ -31,10 +31,11 @@ class AdminsController < WebController
 
 
   def update
-    if @admin.update(admin_params)
+    if @admin.update_with_password(admin_params)
+      sign_in(current_admin, bypass: true)
       redirect_to admins_path, notice: "Administrador atualizado com sucesso."
     else
-      flash[:alert] = "Ocorreram os seguintes erros: #{@admin.errors}"
+      flash[:alert] = "Ocorreram os seguintes erros: #{@admin.errors.full_messages}"
       set_admin
       render "edit"
     end
@@ -49,10 +50,14 @@ class AdminsController < WebController
     end
   end
 
+  def edit_profile
+    @admin = current_admin
+  end
+
 
   private
   def admin_params
-    params.require(:admin).permit(:email, :name, :password, :password_confirmation)
+    params.require(:admin).permit(:email, :name, :current_password, :password, :password_confirmation)
   end
 
   def set_admin

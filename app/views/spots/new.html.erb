@@ -4,6 +4,40 @@
 <script>
  $(document).ready(function() {
   $('.selectpicker').selectpicker();
+
+
+  $("input").each(function(){
+    if(this.id == "spot_name" || this.id === "spot_lat" || this.id === "spot_long") {
+        $(this).attr('required', true);
+    } else {
+    }
+  });
+  
+  $("form").submit(function(event){
+    let heavy_cleaning = $("#light_cleaning").selectpicker('val');
+    let light_cleaning = $("#light_cleaning").selectpicker('val');
+  });
+
+  function readURL(input) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = function(e) {
+        $('#img_preview').attr('src', e.target.result);
+      }
+  
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#customFile").change(function() {
+    readURL(this);
+  });
+
+
  });
+
+
 
 </script>

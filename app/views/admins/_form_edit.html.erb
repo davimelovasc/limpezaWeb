@@ -1,0 +1,26 @@
+<%= form_for @admin, class: "confirm_pass" do |f| %>
+
+    <div class="form-row mt-5">
+
+        <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+        <%= f.label :name, "Nome: " %>
+        <%= f.text_field :name, placeholder: "Nome do administrador", class: "form-control"%>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+        <%= f.label :email, "Email: " %>
+        <%= f.email_field :email, placeholder: "Email", class: "form-control"%>
+        </div>
+
+
+    </div>
+
+<div class="form-row mt-3">
+  <div class="col-12 col-md-11 offset-md-1 col-lg-9">
+    <%= link_to "Cancelar", admins_path, class: "px-4 btn btn-primary"%>
+
+    <%= f.submit "Salvar", class: "px-4 btn btn-primary float-right"%>
+  </div>
+</div>
+
+<% end %>

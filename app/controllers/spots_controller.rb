@@ -19,11 +19,7 @@ class SpotsController < WebController
     if @spot.save
       redirect_to spots_path, notice: "Local criado com sucesso!"
     else
-      @caretakers = User.where(role: 0)
-      @spot = Spot.new
-      @tasks = Task.all
-      #todo flash
-      render 'new'
+      redirect_to new_spot_path, alert: "Ocorreu(ram) o(s) seguinte(s) erro(s) #{@spot.errors.full_messages}"
     end
   end
 
@@ -37,6 +33,9 @@ class SpotsController < WebController
     if @spot.update(spot_params)
       redirect_to spots_path, notice: "#{@spot.name} editado com sucesso."
     else
+      set_tasks
+      @caretakers = User.where(role: 0)
+      flash[:alert] = "Ocorreu(ram) o(s) seguinte(s) erro(s) #{@spot.errors.full_messages}"
       render 'edit'
     end
   end
@@ -44,7 +43,7 @@ class SpotsController < WebController
 
   def destroy
     if @spot.destroy
-      redirect_to spots_path, notice: "Lugar excluído com sucesso."
+      redirect_to spots_path, notice: "Local excluído com sucesso."
     else
       redirect_to spots_path, alert: "Não foi possível excluir o local."
     end

@@ -26,4 +26,4 @@ s3.tasks << [t1, t2, t3, t4]
 # Detail.create(task_has_spot_id: 2, description: "obs3")
 
 # s.task_has_spot[0].details.last
- Admin.create(email: "davimelovasc@gmail.com", password: "12345678")
+Admin.create(email: "davimelovasc@gmail.com", password: "12345678", name: "Davi de Melo Vasconcelos", super: true)

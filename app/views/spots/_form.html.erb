@@ -13,12 +13,12 @@
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :name, "Nome do local: " %>
-      <%= f.text_field :name, placeholder: "Nome do local", class: "form-control", required: "required" %>
+      <%= f.text_field :name, placeholder: "Nome do local", class: "form-control" %>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :governance, "Orgão: " %>
-      <%= f.text_field :governance, value: "Prefeitura de Fortaleza", required: "required", placeholder: "Nome do local", class: "form-control", readonly: "readonly" %>
+      <%= f.text_field :governance, value: "Prefeitura de Fortaleza", placeholder: "Nome do local", class: "form-control", readonly: "readonly" %>
     </div>
 
 
@@ -67,38 +67,37 @@
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :status, "Status: " %> <br/>
-      <%= f.select :status, [["A fazer","0"],["Aguardando verificação", "1"], ["Completado", "2"], ["Tarefas pendentes","3"] ], {include_blank: "Selecione"}, { :class => 'form-control', required: "required" } %>
+      <%= f.select :status, [["A fazer","0"], ["Aguardando verificação", "1"], ["Completado", "2"], ["Tarefas pendentes","3"] ], {}, { :class => 'form-control' } %>
     </div>
 
     <div class="form-group col-sm-6 offset-md-1 col-md-2 col-lg-2">
       <%= f.label :lat, "Latitude: " %>
-      <%= f.text_field :lat, class: "form-control", required: "required" %>
+      <%= f.text_field :lat, class: "form-control" %>
     </div>
 
     <div class="form-group col-sm-6 ml-md-auto ml-lg-0 col-md-2 col-lg-2">
       <%= f.label :long, "Longitude: " %>
-      <%= f.text_field :long, class: "form-control", required: "required" %>
+      <%= f.text_field :long, class: "form-control" %>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
       <%= f.label :photo, "Foto do local: " %>
       <div class="custom-file">
-      <%= f.file_field :photo, class: "file", id: "customFile"%>
-      <label class="custom-file-label" for="customFile">Selecionar Arquivo</label>
+      <input type="file" name="spot[photo]" class="file" id="customFile" style="display: none;">
+      <label class="custom-file-label" for="customFile">Selecionar</label>
+      </div>
+      
+      <br/>
+      <div class="mt-2">
+        <%= f.label :user, "Zelador responsável: " %><br/>
+        <%= f.select :user_id, @caretakers.collect {|c| [ c.name, c.id ] }, {include_blank: 'Nenhum'}, {class: "form-control"} %>
       </div>
     </div>
 
     <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
-      <!-- MAPA GOOGLE -->
-
+      <small style="display: block;">pré-visualização: </small>
+      <img id="img_preview" src="" class="img-preview">
     </div>
-
-    <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
-      <%= f.label :user, "Zelador responsável: " %><br/>
-      <%= f.select :user_id, @caretakers.collect {|c| [ c.name, c.id ] }, {include_blank: 'Nenhum'}, {class: "form-control"} %>
-    </div>
-
-
 
 
     </div> <!-- div.form-row -->
@@ -106,7 +105,7 @@
     <div class="form-row mt-3">
       <div class="col-12 col-md-11 offset-md-1 col-lg-9">
         <%= link_to "Cancelar", spots_path, class: "btn btn-primary" %>
-        <%= f.submit "Salvar", class: "px-4 btn btn-primary float-right" %>
+        <input type="submit" value="Salvar" class="px-4 btn btn-primary float-right" id="submitBt">
       </div>
     </div>
 
