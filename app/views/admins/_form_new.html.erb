@@ -12,6 +12,16 @@
         <%= f.email_field :email, placeholder: "Email", class: "form-control"%>
         </div>
 
+        <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+        <%= f.label :password, "Senha: " %>
+        <%= f.password_field :password, placeholder: "Senha", class: "form-control", id: "password" %>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-5 offset-md-1 col-lg-4">
+        <%= f.label :password_confirmation, "Confirmar senha: " %>
+        <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", class: "form-control", id: "password_confirmation" %>
+        </div>
+
 
     </div>
 

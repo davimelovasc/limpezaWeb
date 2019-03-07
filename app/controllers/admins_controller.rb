@@ -32,8 +32,8 @@ class AdminsController < WebController
 
   def update
     if @admin.update_with_password(admin_params)
-      sign_in(current_admin, bypass: true)
-      redirect_to admins_path, notice: "Administrador atualizado com sucesso."
+      sign_in(@admin, bypass: true)
+      redirect_to admins_path, notice: "Perfil atualizado com sucesso."
     else
       flash[:alert] = "Ocorreram os seguintes erros: #{@admin.errors.full_messages}"
       set_admin
